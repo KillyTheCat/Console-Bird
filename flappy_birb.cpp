@@ -29,6 +29,9 @@ private:
 	int nMaxFlaps = 0;
 
 protected:
+	void drawCenteredText(int y, wstring text) {
+		DrawString((int)(ScreenWidth()/2) - (int)(text.length() / 2), y, text);
+	}
 	virtual bool OnUserCreate() {
 
 		listSection = { 0,0,0,0 };
@@ -49,7 +52,8 @@ protected:
 			nAttempts++;
 		}
 		if (bHasCollided) {
-			DrawString((int)(ScreenWidth() / 2.0f) - 4, 20, L"LMAO DED");
+			drawCenteredText(20, L"LMAO DED");
+			drawCenteredText(21, L"Score: " + to_wstring(nFlaps));
 			if (m_keys[VK_SPACE].bReleased)
 				bResetGame = true;
 		}
